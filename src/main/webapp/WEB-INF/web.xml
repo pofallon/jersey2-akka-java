@@ -15,7 +15,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
           <param-name>javax.ws.rs.Application</param-name>
-          <param-value>com.paulsamiq.examples.jersey2akka.ExampleApplication</param-value>
+          <param-value>com.paulsamiq.jersey2akka.ExampleApplication</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
         <async-supported>true</async-supported>

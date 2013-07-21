@@ -1,4 +1,4 @@
-package com.paulsamiq.examples.jersey2akka;
+package com.paulsamiq.jersey2akka;
 
 import java.util.HashSet;
 import java.util.Set;
