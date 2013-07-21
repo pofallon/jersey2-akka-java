@@ -5,10 +5,10 @@ An example asynchronous REST API written in Java using Jersey 2 and Akka 2.2
 
 [![Build Status](https://buildhive.cloudbees.com/job/pofallon/job/jersey2-akka-java/badge/icon)](https://buildhive.cloudbees.com/job/pofallon/job/jersey2-akka-java/)
 
-Key concepts addressed
-----------------------
+Key concepts
+------------
 * Instantiating an Akka ActorSystem at server startup and injecting it into each request
-* Fulfilling an asynchronous REST service invocation using Akka actors
+* Fulfilling an asynchronous Jersey REST service invocation using Akka actors
 
 How to run the example
 ----------------------
