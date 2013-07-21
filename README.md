@@ -1,6 +1,19 @@
 jersey2-akka-java
 =================
 
-An example async Java REST API using Jersey 2 and Akka
+An example asynchronous REST API written in Java using Jersey 2 and Akka 2.2
 
 [![Build Status](https://buildhive.cloudbees.com/job/pofallon/job/jersey2-akka-java/badge/icon)](https://buildhive.cloudbees.com/job/pofallon/job/jersey2-akka-java/)
+
+How to run the example
+----------------------
+
+1. Clone this repository
+2. Run `mvn tomcat7:run`
+3. Visit `http://localhost:9090/examples/2` via curl or your favorite browser
+
+Prerequisites
+-------------
+
+* Java 7.x
+* Maven 3.x
