@@ -1,4 +1,4 @@
-package com.paulsamiq.jersey2akka;
+package com.ofallonfamily.jersey2akka;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import org.glassfish.hk2.api.DynamicConfiguration;
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
+@ApplicationPath("examples")
 public class ExampleApplication extends Application {
 	
 	private ActorSystem system;

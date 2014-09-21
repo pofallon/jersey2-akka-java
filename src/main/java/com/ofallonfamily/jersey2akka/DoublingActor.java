@@ -1,4 +1,4 @@
-package com.paulsamiq.jersey2akka;
+package com.ofallonfamily.jersey2akka;
 
 import akka.actor.Props;
 import akka.actor.UntypedActor;

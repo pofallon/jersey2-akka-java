@@ -1,4 +1,4 @@
-package com.paulsamiq.jersey2akka;
+package com.ofallonfamily.jersey2akka;
 
 import java.util.HashMap;
 
@@ -23,7 +23,7 @@ import akka.event.LoggingAdapter;
 import akka.pattern.Patterns;
 import akka.util.Timeout;
 
-@Path( "/examples/{value}")
+@Path( "/doubler/{value}")
 public class ExampleService {
 	
 	@Context ActorSystem actorSystem;
