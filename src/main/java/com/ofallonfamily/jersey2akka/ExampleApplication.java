@@ -1,41 +1,35 @@
 package com.ofallonfamily.jersey2akka;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.PreDestroy;
-import javax.inject.Inject;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-
-import org.glassfish.hk2.api.DynamicConfiguration;
-import org.glassfish.hk2.api.ServiceLocator;
-import org.glassfish.jersey.internal.inject.Injections;
-
-import scala.concurrent.duration.Duration;
-
 import akka.actor.ActorSystem;
-import akka.routing.RoundRobinRouter;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import akka.routing.RoundRobinPool;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import org.glassfish.hk2.utilities.binding.AbstractBinder;
+import org.glassfish.jersey.server.ResourceConfig;
+import scala.concurrent.duration.Duration;
+
+import javax.annotation.PreDestroy;
+import javax.ws.rs.ApplicationPath;
+import java.util.concurrent.TimeUnit;
 
 @ApplicationPath("examples")
-public class ExampleApplication extends Application {
+public class ExampleApplication extends ResourceConfig {
 	
 	private ActorSystem system;
-		
-	@Inject
-	public ExampleApplication(ServiceLocator serviceLocator) {
+
+	public ExampleApplication() {
 		
 		system = ActorSystem.create("ExampleSystem");
-		system.actorOf(DoublingActor.mkProps().withRouter(new RoundRobinRouter(5)),"doublingRouter");
-		
-		DynamicConfiguration dc = Injections.getConfiguration(serviceLocator);
-		Injections.addBinding(Injections.newBinder(system).to(ActorSystem.class), dc);
-		dc.commit();
+		system.actorOf(DoublingActor.mkProps().withRouter(new RoundRobinPool(5)), "doublingRouter");
+
+        register(new AbstractBinder() {
+            protected void configure() {
+                bind(system).to(ActorSystem.class);
+            }
+        });
+
+        register(new JacksonJsonProvider().
+            configure(SerializationFeature.INDENT_OUTPUT, true));
 		
 	}
 	
@@ -43,26 +37,6 @@ public class ExampleApplication extends Application {
 	private void shutdown() {
 		system.shutdown();
 		system.awaitTermination(Duration.create(15, TimeUnit.SECONDS));
-	}
-	
-	@Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> s = new HashSet<Class<?>>();
-        s.add(ExampleService.class);
-        return s;
-    }
-	
-	@Override
-	public Set<Object> getSingletons()
-	{
-		Set<Object> s = new HashSet<>();
-		
-		// Add this (w/ corresponding POM changes) to get "pretty printed" JSON
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-		s.add(new JacksonJsonProvider(mapper));
-
-		return s;
 	}
 	
 }

@@ -1,6 +1,14 @@
 package com.ofallonfamily.jersey2akka;
 
-import java.util.HashMap;
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.dispatch.OnComplete;
+import akka.event.LoggingAdapter;
+import akka.pattern.Patterns;
+import akka.util.Timeout;
+import org.glassfish.jersey.server.ManagedAsync;
+import scala.concurrent.Future;
+import scala.concurrent.duration.Duration;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,17 +19,7 @@ import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.glassfish.jersey.server.ManagedAsync;
-
-import scala.concurrent.Future;
-import scala.concurrent.duration.Duration;
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.dispatch.OnComplete;
-import akka.event.LoggingAdapter;
-import akka.pattern.Patterns;
-import akka.util.Timeout;
+import java.util.HashMap;
 
 @Path( "/doubler/{value}")
 public class ExampleService {
