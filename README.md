@@ -14,7 +14,7 @@ How to run the example
 ----------------------
 1. Clone this repository
 2. Run `mvn tomcat7:run`
-3. Visit `http://localhost:9090/examples/2` via curl or your favorite browser
+3. Visit `http://localhost:9090/examples/doubler/2` via curl or your favorite browser
 
 Prerequisites
 -------------
