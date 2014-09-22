@@ -3,7 +3,7 @@ jersey2-akka-java
 
 An example asynchronous REST API written in Java using Jersey 2 and Akka 2.2
 
-[![Build Status](https://buildhive.cloudbees.com/job/pofallon/job/jersey2-akka-java/badge/icon)](https://buildhive.cloudbees.com/job/pofallon/job/jersey2-akka-java/)
+[![Build Status](https://travis-ci.org/pofallon/jersey2-akka-java.svg?branch=master)](https://travis-ci.org/pofallon/jersey2-akka-java)
 
 Key concepts
 ------------
