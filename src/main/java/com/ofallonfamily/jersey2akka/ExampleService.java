@@ -1,6 +1,6 @@
 package com.ofallonfamily.jersey2akka;
 
-import akka.actor.ActorRef;
+import akka.actor.ActorSelection;
 import akka.actor.ActorSystem;
 import akka.dispatch.OnComplete;
 import akka.event.LoggingAdapter;
@@ -21,7 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 
-@Path( "/doubler/{value}")
+@Path("/doubler/{value}")
 public class ExampleService {
 	
 	@Context ActorSystem actorSystem;
@@ -33,10 +33,8 @@ public class ExampleService {
 	public void getExamples (
 			@PathParam("value") Integer value, 
 			@Suspended final AsyncResponse res) {
-		
-		// For Akka 2.2, should use actorSelection,
-		// but how to do this outside of an actor?
-		ActorRef doublingActor = actorSystem.actorFor("/user/doublingRouter");
+
+        ActorSelection doublingActor = actorSystem.actorSelection("/user/doublingRouter");
 		
 		Timeout timeout = new Timeout(Duration.create(2, "seconds"));
 		
@@ -59,7 +57,7 @@ public class ExampleService {
 				} else {		
 					
 					HashMap<String,Object> response = new HashMap<String,Object>();
-					response.put("results",(Integer)result);
+					response.put("results",result);
 					res.resume(Response.ok().entity(response).build());
 					
 				}
