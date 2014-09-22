@@ -14,13 +14,13 @@ import java.util.concurrent.TimeUnit;
 
 @ApplicationPath("examples")
 public class ExampleApplication extends ResourceConfig {
-	
-	private ActorSystem system;
 
-	public ExampleApplication() {
-		
-		system = ActorSystem.create("ExampleSystem");
-		system.actorOf(DoublingActor.mkProps().withRouter(new RoundRobinPool(5)), "doublingRouter");
+    private ActorSystem system;
+
+    public ExampleApplication() {
+
+        system = ActorSystem.create("ExampleSystem");
+        system.actorOf(DoublingActor.mkProps().withRouter(new RoundRobinPool(5)), "doublingRouter");
 
         register(new AbstractBinder() {
             protected void configure() {
@@ -32,13 +32,13 @@ public class ExampleApplication extends ResourceConfig {
             configure(SerializationFeature.INDENT_OUTPUT, true));
 
         packages("com.ofallonfamily.jersey2akka");
-		
-	}
-	
-	@PreDestroy
-	private void shutdown() {
-		system.shutdown();
-		system.awaitTermination(Duration.create(15, TimeUnit.SECONDS));
-	}
-	
+
+    }
+
+    @PreDestroy
+    private void shutdown() {
+        system.shutdown();
+        system.awaitTermination(Duration.create(15, TimeUnit.SECONDS));
+    }
+
 }
