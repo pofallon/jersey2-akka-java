@@ -30,6 +30,8 @@ public class ExampleApplication extends ResourceConfig {
 
         register(new JacksonJsonProvider().
             configure(SerializationFeature.INDENT_OUTPUT, true));
+
+        packages("com.ofallonfamily.jersey2akka");
 		
 	}
 	
