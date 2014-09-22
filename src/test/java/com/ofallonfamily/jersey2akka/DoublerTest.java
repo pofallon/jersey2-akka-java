@@ -11,9 +11,6 @@ import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by paul on 9/21/14.
- */
 public class DoublerTest extends JerseyTest {
 
     protected Application configure() {
