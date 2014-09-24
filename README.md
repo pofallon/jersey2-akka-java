@@ -1,7 +1,7 @@
 jersey2-akka-java
 =================
 
-An example asynchronous REST API written in Java using Jersey 2 and Akka 2.2
+An example asynchronous REST API written in Java using Jersey 2 and Akka 2.3
 
 [![Build Status](https://travis-ci.org/pofallon/jersey2-akka-java.svg?branch=master)](https://travis-ci.org/pofallon/jersey2-akka-java)
 
