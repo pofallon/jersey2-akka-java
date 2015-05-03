@@ -60,15 +60,15 @@
     </resources>
     <pluginManagement>
       <plugins>
-	    <plugin>
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-compiler-plugin</artifactId>
-	      <version>3.3</version>
-	      <configuration>
-	        <source>1.7</source>
-	        <target>1.7</target>
-	      </configuration>
-	    </plugin>
+  	    <plugin>
+  	      <groupId>org.apache.maven.plugins</groupId>
+  	      <artifactId>maven-compiler-plugin</artifactId>
+  	      <version>3.3</version>
+  	      <configuration>
+  	        <source>1.7</source>
+  	        <target>1.7</target>
+  	      </configuration>
+  	    </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
@@ -76,17 +76,36 @@
           <configuration>
             <failOnMissingWebXml>false</failOnMissingWebXml>
           </configuration>
-         </plugin>
-         <plugin>
-    	  <groupId>org.apache.tomcat.maven</groupId>
+        </plugin>
+        <plugin>
+    	    <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
           <version>2.2</version>
           <configuration>
-		    <port>9090</port>
-		    <path>/</path>
-		    <useTestClasspath>false</useTestClasspath>
-	      </configuration>
-	    </plugin>
+		        <port>9090</port>
+		        <path>/</path>
+		        <useTestClasspath>false</useTestClasspath>
+	        </configuration>
+	      </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.5.8.201207111220</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
