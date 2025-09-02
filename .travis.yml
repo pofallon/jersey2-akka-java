@@ -1,3 +1,4 @@
+# This file has been replaced by GitHub Actions workflow at .github/workflows/ci.yml
 language: java
 sudo: false # faster builds
 
