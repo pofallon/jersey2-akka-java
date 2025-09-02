@@ -19,5 +19,5 @@ How to run the example
 
 Prerequisites
 -------------
-* JDK 7.x
+* JDK 21.x
 * Maven 3.x
