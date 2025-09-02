@@ -1,0 +1,2 @@
+# This file ensures the webapp directory is tracked by git
+# The webapp directory is required for Maven WAR packaging
