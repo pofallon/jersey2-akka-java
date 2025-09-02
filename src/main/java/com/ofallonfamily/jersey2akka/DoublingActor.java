@@ -1,13 +1,13 @@
 package com.ofallonfamily.jersey2akka;
 
+import akka.actor.AbstractActor;
 import akka.actor.Props;
-import akka.actor.UntypedActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
-public class DoublingActor extends UntypedActor {
+public class DoublingActor extends AbstractActor {
 
-    LoggingAdapter log = Logging.getLogger(getContext().system(), this);
+    LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
     public static Props mkProps() {
         return Props.create(DoublingActor.class);
@@ -19,15 +19,14 @@ public class DoublingActor extends UntypedActor {
     }
 
     @Override
-    public void onReceive(Object message) throws Exception {
-
-        if (message instanceof Integer) {
-            log.debug("received message: " + (Integer)message);
-            getSender().tell((Integer)message*2, getSelf());
-        } else {
-            unhandled(message);
-        }
-
+    public Receive createReceive() {
+        return receiveBuilder()
+            .match(Integer.class, message -> {
+                log.debug("received message: " + message);
+                getSender().tell(message * 2, getSelf());
+            })
+            .matchAny(this::unhandled)
+            .build();
     }
 
 }
