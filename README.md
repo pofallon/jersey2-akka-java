@@ -4,7 +4,7 @@ jersey2-akka-java
 An example asynchronous REST API written in Java using Jersey 2 and Akka 2.3
 
 [![CI](https://github.com/pofallon/jersey2-akka-java/workflows/CI/badge.svg)](https://github.com/pofallon/jersey2-akka-java/actions/workflows/ci.yml)
-[![Dependency Status](https://www.versioneye.com/user/projects/54bacfb5879d51106e000153/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54bacfb5879d51106e000153)
+[![Dependabot enabled](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg)](https://github.com/dependabot)
 
 Key concepts
 ------------
