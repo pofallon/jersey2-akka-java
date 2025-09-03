@@ -73,8 +73,8 @@
 	      <artifactId>maven-compiler-plugin</artifactId>
 	      <version>3.13.0</version>
 	      <configuration>
-	        <source>21</source>
-	        <target>21</target>
+	        <source>17</source>
+	        <target>17</target>
 	        <encoding>UTF-8</encoding>
 	      </configuration>
 	    </plugin>
@@ -107,6 +107,38 @@
 		        <useTestClasspath>false</useTestClasspath>
 	        </configuration>
 	      </plugin>
+        <plugin>
+          <groupId>org.codehaus.cargo</groupId>
+          <artifactId>cargo-maven3-plugin</artifactId>
+          <version>1.10.21</version>
+          <configuration>
+            <container>
+              <containerId>tomcat10x</containerId>
+              <type>embedded</type>
+              <artifactInstaller>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat</artifactId>
+                <version>10.1.43</version>
+                <type>tar.gz</type>
+              </artifactInstaller>
+            </container>
+            <configuration>
+              <properties>
+                <cargo.servlet.port>9090</cargo.servlet.port>
+              </properties>
+            </configuration>
+            <deployables>
+              <deployable>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <type>war</type>
+                <properties>
+                  <context>/</context>
+                </properties>
+              </deployable>
+            </deployables>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>

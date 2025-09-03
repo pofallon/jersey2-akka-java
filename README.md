@@ -14,10 +14,14 @@ Key concepts
 How to run the example
 ----------------------
 1. Clone this repository
-2. Run `mvn tomcat7:run`
+2. Run `mvn cargo:run`
 3. Visit `http://localhost:9090/examples/doubler/2` via curl or your favorite browser
+
+The application uses the Cargo Maven plugin to run Apache Tomcat 10.1.43, which provides full support for Jakarta EE and modern Java versions.
+
+**Note:** The legacy `mvn tomcat7:run` command is still available but uses the older Tomcat 7.0.47 which has compatibility issues with modern Jakarta EE libraries and may not work correctly.
 
 Prerequisites
 -------------
-* JDK 21.x
+* JDK 17.x
 * Maven 3.x
